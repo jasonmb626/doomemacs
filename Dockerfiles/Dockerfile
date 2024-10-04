@@ -30,6 +30,7 @@ RUN apk update -U \
         wl-clipboard\
         sudo \
         unzip gzip fd mercurial wget\
+    && rm /etc/ssh/sshd_config \
     && addgroup -g ${GID} app \
     && adduser -D -u ${UID} -G app -s /bin/zsh app \
     && passwd -d app \
