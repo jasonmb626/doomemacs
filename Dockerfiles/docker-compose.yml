@@ -13,7 +13,6 @@ services:
       - dotlocal:/home/app/.local
       - emacs_dotlocal:/home/app/.config/emacs/.local
       - emacs_eln_cache:/home/app/.config/emacs/eln_cache
-      - ~/.gitconfig:/home/app/.gitconfig:ro
       - /etc/localtime:/etc/localtime:ro
       - $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY:z
     stdin_open: true
@@ -35,5 +34,3 @@ volumes:
   node_modules:
   emacs_dotlocal:
   emacs_eln_cache:
-  
-
