@@ -5,25 +5,20 @@ services:
       args:
         UID: 1000
         GRP: 1000
-    container_name: nvim-node
+    container_name: emacs_nvim_tmux
     restart: always
     volumes:
       - ./app:/app:z
-      - node_modules:/app/node_modules/
-      - dotlocal:/home/app/.local
-      - emacs_dotlocal:/home/app/.config/emacs/.local
-      - emacs_eln_cache:/home/app/.config/emacs/eln_cache
-      - /etc/localtime:/etc/localtime:ro
-      - $XDG_RUNTIME_DIR/$WAYLAND_DISPLAY:/tmp/$WAYLAND_DISPLAY:z
+      - node_modules:/app/node_modules:z
+      - dotlocal:/home/app/.local:z
+      - emacs_dotlocal:/home/app/.config/emacs/.local:z
+      - emacs_eln_cache:/home/app/.config/emacs/eln_cache:z
     stdin_open: true
     tty: true
-    ports:
-      - "22:22"
     user: 1000:1000
     environment:
       XDG_RUNTIME_DIR: /tmp
       TERM: xterm-256color
-      WAYLAND_DISPLAY: $WAYLAND_DISPLAY
       XDG_DATA_DIRS: /tmp/XDG_DATA_DIRS
       ZDOTDIR:
         /home/app/.config/zsh
