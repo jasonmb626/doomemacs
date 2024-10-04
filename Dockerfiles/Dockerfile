@@ -9,10 +9,14 @@ ENV GDM_LANG=en_US.UTF-8
 ENV LANG=en_US.UTF-8
 ENV ZDOTDIR=/home/app/.config/zsh/
 ENV XDG_CACHE_HOME=/home/app/.local/cache
+ENV ZETTEL_BASE=/home/app/Documents/zettelkasten
+ENV ORG_TEMPLATES_DIR=/home/app/.config/emacs/doom/templates
+ENV DOOMDIR=/home/app/.config/emacs/doom
 
 WORKDIR /app
 RUN apk add -U py3-pip npm zsh \
-    && sed -i 's,root:x:0:0:root:/root:/bin/ash,root:x:0:0:root:/root:/bin/zsh,g' /etc/passwd
+    && sed -i 's,root:x:0:0:root:/root:/bin/ash,root:x:0:0:root:/root:/bin/zsh,g' /etc/passwd \
+    && chmod -R 777 /tmp
 
 COPY requirements.txt /tmp
 RUN apk update -U \
@@ -44,6 +48,7 @@ RUN apk update -U \
     && git clone https://github.com/tmux-plugins/tpm /home/app/.config/tmux/plugins/tpm \
     && git clone https://github.com/jasonmb626/my-lazyvim-starter.git /home/app/.config/nvim \
     && git clone --depth 1 https://github.com/jasonmb626/doomemacs.git /home/app/.config/emacs \
+    && mkdir /home/app/.config/emacs/doom \
     && git clone https://github.com/jasonmb626/dotfiles-dev.git /tmp/dotfiles-dev \
     && mkdir -p /home/app/.config/emacs/eln-cache && mkdir -p /home/app/.config/emacs/.local \
     && cp /tmp/dotfiles-dev/tmux/tmux.conf /home/app/.config/tmux/tmux.conf \
@@ -57,7 +62,7 @@ RUN apk update -U \
         /home/app/.config/tmux/plugins/tpm/scripts/install_plugins.sh
         tmux source ~/.config/tmux/tmux.conf
     fi
-    sed -i 's^--vim.g.python3_host_prog = "/home/app/.venvs/app/bin/python"^vim.g.python3_host_prog = "/home/app/.venvs/app/bin/python"^'
+    sed -i 's^--vim.g.python3_host_prog = "/home/app/.venvs/app/bin/python"^vim.g.python3_host_prog = "/home/app/.venvs/app/bin/python"^' /home/app/.config/nvim/lua/config/options.lua
     if [[ -d /app/node_modules ]]; then
         size_of=\$(du /app/node_modules | tail -n 1 | awk {'print \$1'})
         if [[ \$size_of -eq 0 ]]; then
@@ -68,7 +73,9 @@ EOF
 
 RUN cat /tmp/zshrc_preamble /tmp/.zshrc > /home/app/.config/zsh/.zshrc \
     && rm /tmp/zshrc_preamble /tmp/.zshrc \
-    && chown -R app:app /home/app
-  
+    && dos2unix /home/app/.config/zsh/.zshrc \
+    && chown -R app:app /home/app \
+    && chmod 777 /tmp
+      
 USER app:app
 CMD ["tmux"]
