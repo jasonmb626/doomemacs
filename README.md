@@ -119,8 +119,12 @@ Check out [the FAQ][FAQ] for answers to common questions about the project.
 
 # Install
 ``` sh
-git clone --depth 1 https://github.com/doomemacs/doomemacs ~/.config/emacs
-~/.config/emacs/bin/doom install
+git clone --depth 1 https://github.com/jasonmb626/doomemacs ~/.config/emacs
+~/.config/emacs/bin/doom --doomdir=~/.config/emacs/doom -! install
+~/.config/emacs/bin/doom sync
+cp ~/.config/emacs/packages.el ~/.config/emacs/doom
+cp ~/.config/emacs/init.el ~/.config/emacs/doom
+cp ~/.config/emacs/config.el ~/.config/emacs/doom
 ```
 
 Then [read our Getting Started guide][getting-started] to be walked through
