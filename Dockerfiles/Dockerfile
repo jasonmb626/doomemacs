@@ -47,10 +47,9 @@ RUN apk update -U \
     && mkdir -p /home/app/.local \
     && git clone https://github.com/tmux-plugins/tpm /home/app/.config/tmux/plugins/tpm \
     && git clone https://github.com/jasonmb626/my-lazyvim-starter.git /home/app/.config/nvim \
-    && git clone --depth 1 https://github.com/jasonmb626/doomemacs.git /home/app/.config/emacs \
-    && mkdir -p /home/app/.config/emacs/doom && mkdir -p /home/app/Documents/zettelkasten \
+    && git clone https://github.com/daviwil/emacs-from-scratch.git /home/app/.config/emacs \
     && git clone https://github.com/jasonmb626/dotfiles-dev.git /tmp/dotfiles-dev \
-    && mkdir -p /home/app/.config/emacs/eln-cache && mkdir -p /home/app/.config/emacs/.local \
+    && mkdir -p /home/app/.config/emacs/quelpa && mkdir -p /home/app/.config/emacs/elpa && mkdir -p /home/app/.config/emacs/.local \
     && cp /tmp/dotfiles-dev/tmux/tmux.conf /home/app/.config/tmux/tmux.conf \
     && mv /tmp/dotfiles-dev/zsh /home/app/.config/ && rm -fr /tmp/dotfiles-dev \
     && mv /home/app/.config/zsh/.zshrc /tmp/.zshrc \
