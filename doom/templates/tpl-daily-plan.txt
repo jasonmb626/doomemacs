@@ -1,0 +1,39 @@
+**** TODO DR BOOTUP
+=========
+- [ ] Review all "PEND STATE" entries and assign them proper todos
+- [ ] See if there are any updates on incidents sent to other groups.
+- [ ] Add Meetings from Outlook 365 to calendar.
+Braindump 1:
+- [ ] Set a timer for 5 minutes and write down what's in your mind
+
+GET CLEAN
+=========
+Inbox Zero (Create new tasks if needed):
+- [ ] Email
+- [ ] Voicemail, Others
+Braindump 1:
+- [ ] Set a timer for 5 minutes and write down what's in your mind
+
+CHECK CURRENT
+=============
+Check WAITING/BLOCKED actions and do this for each item:
+- [ ] Did the blocker clear? If so change status to NEXT
+- [ ] Postpone reminder if still waiting/blocked and it's overdue
+Check DELEGATED actions and do this for each item:
+- [ ] Is the task finished? If so mark it as DONE
+- [ ] Is the task overdue? If so schedule a supportive action
+Check your projects and tasks in detail:
+- [ ] Review Project List, is something stuck?
+- [ ] See your goals list and the associated actions
+- [ ] Browse through your actions and mark finished things DONE or CANCELLED
+- [ ] Schedule tasks with no date
+- [ ] See your schedule for the next 2 weeks an reschedule if it's too full
+
+FUTURE ACTIONS
+==============
+Prepare for the future:
+- [ ] Is a Someday/Maybe becoming a task/project?
+- [ ] If a Someday is no longer of interest set it to "Canceled".
+Braindump 2:
+- [ ] Set timer to 5 minutes and start dreaming
+- [ ] Put the results into Actions/Someday/Maybe

@@ -1,0 +1,9 @@
+**** TODO CHECK CURRENT
+=============
+Rate your performance, energy and write a journal entry:
+- [ ] Check last weeks daily plan on how good the performace was
+- [ ] Create short Journal entry of what was bad & good last week
+
+WR SHUTDOWN & ARCHIVING
+=======================
+- [ ] Select finished tasks in agenda view and do a bulk archive action

@@ -1,0 +1,9 @@
+* TODO Email: %^{Subject Line} :EMAIL:
+  :PROPERTIES:
+  :From: %^{From}
+  :Arrived: %^{Arrived}
+  :END:
+  :LOGBOOK:
+  - Added: %U
+  :END:
+  What do we need to do?: %?

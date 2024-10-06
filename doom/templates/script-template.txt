@@ -1,0 +1,13 @@
+* TODO Script: %(format my/org-capture-script-name) :SCRIPTING:
+  :PROPERTIES:
+  :plcss01: %^{plcss01}
+  :plw: %^{plw}
+  :Working_Directory: %^{Working_Directory}
+  :Run_type: %^{Run_type}
+  :PBI/PKE: %^{PBIPKE}
+  :ID: %(format my/org-capture-script-name)
+  :END:
+  :LOGBOOK:
+  - Added: %U
+  :END:
+  Purpose: %?

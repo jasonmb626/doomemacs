@@ -217,9 +217,9 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (interactive)
-            (setq doom-localleader-key ",")
             (map! :leader :desc "org-insert-heading-respect-content" "RET" #'org-insert-heading-respect-content)
             (map! :localleader (:prefix ("i" . "insert") "S" #'yas-insert-snippet))
+            (map! :localleader "," #'org-ctrl-c-ctrl-c)
                                       ;define-key also seems to work? TODO What's the difference?
             (define-key evil-normal-state-map (kbd "t") 'org-todo)
             (local-set-key (kbd "C-c C-i") 'org-clock-in)

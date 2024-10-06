@@ -357,51 +357,48 @@ I like:
         +org-capture-journal-file
         (expand-file-name +org-capture-journal-file org-directory)
         org-capture-templates
-        '(("t" "Personal todo" entry
-           (file+headline +org-capture-todo-file "Inbox")
-           "* [ ] %?\n%i\n%a" :prepend t)
-          ("n" "Personal notes" entry
-           (file+headline +org-capture-notes-file "Inbox")
-           "* %u %?\n%i\n%a" :prepend t)
-          ("j" "Journal" entry
-           (file+olp+datetree +org-capture-journal-file)
-           "* %U %?\n%i\n%a" :prepend t)
-
-          ;; Will use {project-root}/{todo,notes,changelog}.org, unless a
-          ;; {todo,notes,changelog}.org file is found in a parent directory.
-          ;; Uses the basename from `+org-capture-todo-file',
-          ;; `+org-capture-changelog-file' and `+org-capture-notes-file'.
-          ("p" "Templates for projects")
-          ("pt" "Project-local todo" entry  ; {project-root}/todo.org
-           (file+headline +org-capture-project-todo-file "Inbox")
-           "* TODO %?\n%i\n%a" :prepend t)
-          ("pn" "Project-local notes" entry  ; {project-root}/notes.org
-           (file+headline +org-capture-project-notes-file "Inbox")
-           "* %U %?\n%i\n%a" :prepend t)
-          ("pc" "Project-local changelog" entry  ; {project-root}/changelog.org
-           (file+headline +org-capture-project-changelog-file "Unreleased")
-           "* %U %?\n%i\n%a" :prepend t)
-
-          ;; Will use {org-directory}/{+org-capture-projects-file} and store
-          ;; these under {ProjectName}/{Tasks,Notes,Changelog} headings. They
-          ;; support `:parents' to specify what headings to put them under, e.g.
-          ;; :parents ("Projects")
-          ("o" "Centralized templates for projects")
-          ("ot" "Project todo" entry
-           (function +org-capture-central-project-todo-file)
-           "* TODO %?\n %i\n %a"
-           :heading "Tasks"
-           :prepend nil)
-          ("on" "Project notes" entry
-           (function +org-capture-central-project-notes-file)
-           "* %U %?\n %i\n %a"
-           :heading "Notes"
-           :prepend t)
-          ("oc" "Project changelog" entry
-           (function +org-capture-central-project-changelog-file)
-           "* %U %?\n %i\n %a"
-           :heading "Changelog"
-           :prepend t)))
+          `(
+            ("S" "Store" entry
+             (file (lambda() (interactive) (my/generate-new-store-file-name)))
+             (file  ,(concat templates_dir "/store-template.txt")))
+            ("i" "Incident" entry
+             (file (lambda() (interactive) (my/generate-new-inc-file-name)))
+             (file  ,(concat templates_dir "/inc-template.txt")))
+            ("t" "TODO entry" entry
+             (file+headline "journal.org" "Capture")
+             "* TODO %^{Description} :NEW:\n  Desired outcome: %?\n  :LOGBOOK:\n  - Added: %U\n  :END:"
+             :empty-lines-before 1)
+            ("i" "Incoming Phone call" entry
+             (file+olp+datetree "journal.org")
+             (file "templates/in-call-template.txt"))
+            ("o" "Outgoing Phone call" entry
+             (file+headline "journal.org" "Capture")
+             (file  ,(concat templates_dir "/out-call-template.txt")))
+            ("e" "Email" entry
+             (file+headline "journal.org" "Capture")
+             (file  ,(concat templates_dir "/email-template.txt")))
+            ("s" "Script" entry
+             (file (lambda() (interactive) (my/generate-new-script-file-name)))
+             (file  ,(concat templates_dir "/script-template.txt")))
+            ("m" "Meeting" entry
+             (file+headline "journal.org" "Capture")
+             (file  ,(concat templates_dir "/meeting-template.txt")))
+            ("j" "Journal entry" entry
+             (file+olp+datetree "journal.org")
+             "* %U - %^{Activity}")
+            ("d" "Daily plan" plain
+             (file+olp+datetree "journal.org")
+             (file  ,(concat templates_dir "/tpl-daily-plan.txt"))
+             :immediate-finish t)
+            ("w" "Daily plan" plain
+             (file+olp+datetree "journal.org")
+             (file  ,(concat templates_dir "/tpl-weekly-plan.txt"))
+             :immediate-finish t)
+            ("m" "Monthly plan" plain
+             (file+olp+datetree "journal.org")
+             (file  ,(concat templates_dir "/tpl-monthly-plan.txt"))
+             :immediate-finish t)
+            ))
 
   ;; Kill capture buffers by default (unless they've been visited)
   (after! org-capture
